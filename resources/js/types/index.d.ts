@@ -20,6 +20,9 @@ export interface Article {
     slug: string
     categories: Category[]
     primaryCategory: Category
+    tags: Tag[]
+    media: Media[]
+    socialLinks: SocialLink[]
 }
 export interface Category {
     id: string
@@ -27,8 +30,13 @@ export interface Category {
 }
 export interface Paginated<T> {
     data: T
-    prev_page_url: string
-    next_page_url: string
+    links: {
+        first: string | null
+        last: string | null
+        prev: string | null
+        next: string | null
+    }
+
 }
 
 export interface Media {
