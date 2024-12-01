@@ -21,6 +21,9 @@ class ArticleResource extends JsonResource
             'content' => $this->content,
             'categories' => CategoryResource::collection($this->categories),
             'primaryCategory' => new CategoryResource($this->primaryCategory),
+            'media' => $this->media,
+            'tags' => $this->tags,
+            'socialLinks' => $this->socialLinks,
         ];
     }
 }
