@@ -1,5 +1,5 @@
 <template>
-    <div  v-if="articleStore.articlesData">
+    <div v-if="articleStore.articlesData">
         <div class="grid grid-cols-3 gap-5 justify-center">
             <ArticleItem
                 v-if="articleStore.articlesData"
@@ -10,7 +10,6 @@
         </div>
         <div class="flex gap-2 justify-center mt-4">
             <button
-            
                 v-if="articleStore.articlesData.links.prev"
                 @click="fetchPage(articleStore.articlesData.links.prev)"
                 class="px-4 py-2 bg-gray-300 rounded"
@@ -31,8 +30,7 @@
 
 <script lang="ts" setup>
 import ArticleItem from '@/Components/ArticleItem.vue'
-import { useArticleStore } from '@/stores/articles';
-
+import { useArticleStore } from '@/stores/articles'
 
 const articleStore = useArticleStore()
 const filters = defineModel<{
@@ -40,7 +38,7 @@ const filters = defineModel<{
     category: string
 }>()
 
-const fetchPage = async (url:string) => {
+const fetchPage = async (url: string) => {
     try {
         // Envoyer une requête GET à l'URL spécifiée
         const response = await fetch(url, {
@@ -55,13 +53,10 @@ const fetchPage = async (url:string) => {
         }
 
         const data = await response.json()
-        articleStore.setArticles( data) // Supposons que l'API retourne les articles dans `data`
+        articleStore.setArticles(data) // Supposons que l'API retourne les articles dans `data`
         console.log('Page chargée :')
     } catch (err) {
         console.error('Erreur :', err)
     }
 }
-
 </script>
-
-

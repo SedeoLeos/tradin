@@ -36,7 +36,6 @@ export interface Paginated<T> {
         prev: string | null
         next: string | null
     }
-
 }
 
 export interface Media {

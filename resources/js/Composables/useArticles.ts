@@ -8,7 +8,7 @@ export function useArticles() {
     const categoriesData = ref<Paginated<Category[]>>()
     const localFilters = ref<{ search: string; category: string }>({
         search: '',
-        category: ''
+        category: '',
     })
 
     const fetchArticles = async (url: string) => {
@@ -49,17 +49,17 @@ export function useArticles() {
     const search = async () => {
         const queryParams = new URLSearchParams(localFilters.value)
         const url = `/api/articles?${queryParams.toString()}`
-        
+
         // Updates the URL without reloading the page
         window.history.pushState({}, '', `?${queryParams.toString()}`)
-        
+
         await fetchArticles(url) // Uses the generic fetch function
     }
 
     const cleanFetch = async () => {
         // Resets the filters
         localFilters.value = { search: '', category: '' }
-        
+
         // Cleans the URL
         window.history.pushState({}, '', window.location.pathname)
 
@@ -74,7 +74,7 @@ export function useArticles() {
 
         const queryParams = new URLSearchParams(localFilters.value)
         const url = `/api/articles?${queryParams.toString()}`
-        
+
         window.history.pushState({}, '', `?${queryParams.toString()}`)
 
         await fetchArticles(url) // Uses the generic fetch function
@@ -87,6 +87,6 @@ export function useArticles() {
         cleanFetch,
         selectCategory,
         fetchArticles,
-        fetchCategories
+        fetchCategories,
     }
 }
